@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoCare360 – AI-Powered Vehicle Intelligence</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-content">
+      <div class="hologram-loader">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+      </div>
+      <h2>Initializing AI Systems...</h2>
+      <div class="loading-progress">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p id="loading-text">Loading Vehicle Data...</p>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <div class="logo-section">
+        <div class="logo-icon">🚗</div>
+        <div class="title-section">
+          <h1>AutoCare360</h1>
+          <p>AI-Powered Vehicle Intelligence System</p>
+        </div>
+      </div>
+      <div class="header-stats">
+        <div class="stat-item">
+          <span class="stat-value" id="vehicles-monitored">1,247</span>
+          <span class="stat-label">Vehicles Monitored</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="alerts-prevented">89</span>
+          <span class="stat-label">Issues Prevented</span>
+        </div>
+        <div class="status-indicator online" id="system-status">
+          <i class="fas fa-circle"></i> System Online
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Real-time Vehicle Data Panel -->
+    <section class="vehicle-data-panel">
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <div class="data-content">
+            <h4>Mileage</h4>
+            <span class="data-value" id="mileage">72,458 km</span>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-icon"><i class="fas fa-car-battery"></i></div>
+          <div class="data-content">
+            <h4>Battery Health</h4>
+            <span class="data-value warning" id="battery">78%</span>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-icon"><i class="fas fa-cog"></i></div>
+          <div class="data-content">
+            <h4>Engine Status</h4>
+            <span class="data-value good" id="engine">Optimal</span>
+          </div>
+        </div>
+        <div class="data-card">
+          <div class="data-icon"><i class="fas fa-calendar"></i></div>
+          <div class="data-content">
+            <h4>Last Service</h4>
+            <span class="data-value" id="last-service">45 days ago</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced 3D Vehicle Blueprint Section -->
+    <section class="vehicle-blueprint">
+      <div class="blueprint-header">
+        <h2><i class="fas fa-cube"></i> Holographic Vehicle Analysis</h2>
+        <div class="view-modes">
+          <button class="mode-btn active" onclick="setViewMode('normal')">Normal</button>
+          <button class="mode-btn" onclick="setViewMode('xray')">X-Ray</button>
+          <button class="mode-btn" onclick="setViewMode('thermal')">Thermal</button>
+          <button class="mode-btn" onclick="setViewMode('diagnostic')">Diagnostic</button>
+        </div>
+      </div>
+      
+      <div class="blueprint-layout">
+        <!-- Left Side: Component Analysis Panel -->
+        <div class="component-analysis-panel">
+          <h3><i class="fas fa-cogs"></i> Component Status</h3>
+          <div class="component-list">
+            <div class="component-item" data-component="engine">
+              <div class="component-icon engine-icon">
+                <i class="fas fa-cog"></i>
+              </div>
+              <div class="component-info">
+                <h4>Engine System</h4>
+                <span class="status-badge good">Optimal</span>
+                <p>Performance: 94%</p>
+              </div>
+            </div>
+            
+            <div class="component-item" data-component="battery">
+              <div class="component-icon battery-icon warning">
+                <i class="fas fa-car-battery"></i>
+              </div>
+              <div class="component-info">
+                <h4>Battery</h4>
+                <span class="status-badge warning">78% - Replace Soon</span>
+                <p>Voltage: 11.8V</p>
+              </div>
+            </div>
+            
+            <div class="component-item" data-component="brakes">
+              <div class="component-icon brake-icon warning">
+                <i class="fas fa-dot-circle"></i>
+              </div>
+              <div class="component-info">
+                <h4>Brake System</h4>
+                <span class="status-badge warning">Pads 25% - Service Required</span>
+                <p>Brake fluid: Good</p>
+              </div>
+            </div>
+            
+            <div class="component-item" data-component="transmission">
+              <div class="component-icon transmission-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <div class="component-info">
+                <h4>Transmission</h4>
+                <span class="status-badge good">Excellent</span>
+                <p>Fluid level: Normal</p>
+              </div>
+            </div>
+            
+            <div class="component-item" data-component="cooling">
+              <div class="component-icon cooling-icon">
+                <i class="fas fa-thermometer-half"></i>
+              </div>
+              <div class="component-info">
+                <h4>Cooling System</h4>
+                <span class="status-badge good">Normal Temperature</span>
+                <p>Coolant level: 85%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side: 3D Vehicle Model -->
+        <div class="vehicle-3d-container" id="vehicle-container">
+          <div class="hologram-grid"></div>
+          <div class="vehicle-3d-scene" id="vehicle-scene">
+            <!-- Enhanced Realistic 3D Car Model -->
+            <div class="car-3d" id="vehicle-model">
+              <!-- Car Main Structure -->
+              <div class="car-structure">
+                <!-- Car Body -->
+                <div class="car-body-frame">
+                  <!-- Main chassis -->
+                  <div class="chassis-base"></div>
+                  
+                  <!-- Body panels -->
+                  <div class="body-panel front-panel" data-component="hood">
+                    <div class="panel-surface"></div>
+                    <div class="panel-edge"></div>
+                  </div>
+                  
+                  <div class="body-panel roof-panel" data-component="roof">
+                    <div class="panel-surface"></div>
+                    <div class="sunroof"></div>
+                  </div>
+                  
+                  <div class="body-panel rear-panel" data-component="trunk">
+                    <div class="panel-surface"></div>
+                    <div class="panel-edge"></div>
+                  </div>
+                  
+                  <!-- Windows -->
+                  <div class="window-assembly">
+                    <div class="windshield" data-component="windshield"></div>
+                    <div class="rear-window" data-component="rear-window"></div>
+                    <div class="side-window left" data-component="window-left"></div>
+                    <div class="side-window right" data-component="window-right"></div>
+                  </div>
+                  
+                  <!-- Doors -->
+                  <div class="door-assembly">
+                    <div class="door front-left" data-component="door-fl">
+                      <div class="door-handle"></div>
+                      <div class="door-window"></div>
+                    </div>
+                    <div class="door front-right" data-component="door-fr">
+                      <div class="door-handle"></div>
+                      <div class="door-window"></div>
+                    </div>
+                    <div class="door rear-left" data-component="door-rl">
+                      <div class="door-handle"></div>
+                      <div class="door-window"></div>
+                    </div>
+                    <div class="door rear-right" data-component="door-rr">
+                      <div class="door-handle"></div>
+                      <div class="door-window"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Wheel Assembly -->
+                <div class="wheel-assembly">
+                  <div class="wheel-unit front-left" data-component="brakes" data-status="warning">
+                    <div class="tire-outer"></div>
+                    <div class="rim-center"></div>
+                    <div class="brake-system warning">
+                      <div class="brake-disc"></div>
+                      <div class="brake-caliper"></div>
+                    </div>
+                    <div class="suspension-strut"></div>
+                  </div>
+                  
+                  <div class="wheel-unit front-right" data-component="brakes" data-status="warning">
+                    <div class="tire-outer"></div>
+                    <div class="rim-center"></div>
+                    <div class="brake-system warning">
+                      <div class="brake-disc"></div>
+                      <div class="brake-caliper"></div>
+                    </div>
+                    <div class="suspension-strut"></div>
+                  </div>
+                  
+                  <div class="wheel-unit rear-left" data-component="brakes">
+                    <div class="tire-outer"></div>
+                    <div class="rim-center"></div>
+                    <div class="brake-system">
+                      <div class="brake-disc"></div>
+                      <div class="brake-caliper"></div>
+                    </div>
+                    <div class="suspension-strut"></div>
+                  </div>
+                  
+                  <div class="wheel-unit rear-right" data-component="brakes">
+                    <div class="tire-outer"></div>
+                    <div class="rim-center"></div>
+                    <div class="brake-system">
+                      <div class="brake-disc"></div>
+                      <div class="brake-caliper"></div>
+                    </div>
+                    <div class="suspension-strut"></div>
+                  </div>
+                </div>
+                
+                <!-- Engine Bay -->
+                <div class="engine-compartment">
+                  <div class="engine-block" data-component="engine" data-status="good">
+                    <div class="engine-head"></div>
+                    <div class="engine-body"></div>
+                    <div class="cylinders">
+                      <div class="cylinder"></div>
+                      <div class="cylinder"></div>
+                      <div class="cylinder"></div>
+                      <div class="cylinder"></div>
+                    </div>
+                    <div class="intake-manifold"></div>
+                    <div class="exhaust-manifold"></div>
+                  </div>
+                  
+                  <div class="battery-unit" data-component="battery" data-status="warning">
+                    <div class="battery-case"></div>
+                    <div class="battery-terminals">
+                      <div class="terminal positive"></div>
+                      <div class="terminal negative"></div>
+                    </div>
+                    <div class="battery-cables"></div>
+                  </div>
+                  
+                  <div class="cooling-system" data-component="cooling">
+                    <div class="radiator"></div>
+                    <div class="cooling-fan"></div>
+                    <div class="coolant-reservoir"></div>
+                  </div>
+                  
+                  <div class="air-intake" data-component="air-filter">
+                    <div class="air-filter-box"></div>
+                    <div class="intake-tube"></div>
+                  </div>
+                </div>
+                
+                <!-- Transmission -->
+                <div class="transmission-unit" data-component="transmission">
+                  <div class="transmission-case"></div>
+                  <div class="drive-shaft"></div>
+                  <div class="differential"></div>
+                </div>
+                
+                <!-- Lighting System -->
+                <div class="lighting-system">
+                  <div class="headlight-assembly front-left" data-component="headlight-l">
+                    <div class="headlight-lens"></div>
+                    <div class="headlight-housing"></div>
+                    <div class="led-elements">
+                      <div class="led-strip"></div>
+                      <div class="led-strip"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="headlight-assembly front-right" data-component="headlight-r">
+                    <div class="headlight-lens"></div>
+                    <div class="headlight-housing"></div>
+                    <div class="led-elements">
+                      <div class="led-strip"></div>
+                      <div class="led-strip"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="taillight-assembly rear-left" data-component="taillight-l">
+                    <div class="taillight-lens"></div>
+                    <div class="brake-light"></div>
+                    <div class="turn-signal"></div>
+                  </div>
+                  
+                  <div class="taillight-assembly rear-right" data-component="taillight-r">
+                    <div class="taillight-lens"></div>
+                    <div class="brake-light"></div>
+                    <div class="turn-signal"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Advanced Scan Effects -->
+              <div class="advanced-scan-system" id="scan-effects">
+                <div class="laser-scan horizontal"></div>
+                <div class="laser-scan vertical"></div>
+                <div class="scan-grid-overlay"></div>
+                <div class="diagnostic-particles">
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                  <div class="particle"></div>
+                </div>
+              </div>
+              
+              <!-- Component Status Indicators -->
+              <div class="status-indicators" id="component-highlights">
+                <div class="status-ring engine-status good"></div>
+                <div class="status-ring battery-status warning"></div>
+                <div class="status-ring brake-status warning"></div>
+                <div class="status-ring transmission-status good"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Component Info Tooltip -->
+          <div class="component-tooltip" id="component-tooltip">
+            <h4 id="tooltip-title">Component Name</h4>
+            <p id="tooltip-status">Status: Good</p>
+            <p id="tooltip-description">Component description</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced AI Agents Panel -->
+    <section class="ai-agents-panel">
+      <div class="agents-header">
+        <h2><i class="fas fa-robot"></i> AI Agent Network</h2>
+        <div class="agents-status">
+          <span class="status-dot active"></span>
+          <span>3 Agents Active</span>
+        </div>
+      </div>
+      
+      <div class="agents-grid">
+        <div class="agent-card diagnostic active" id="diagnostic-agent" onclick="selectAgent('diagnostic')">
+          <div class="agent-header">
+            <div class="agent-avatar active">
+              <i class="fas fa-robot"></i>
+              <div class="pulse-ring"></div>
+            </div>
+            <div class="agent-info">
+              <h3>Diagnostic AI</h3>
+              <span class="agent-status">Active</span>
+            </div>
+          </div>
+          <p class="agent-suggestion" id="diagnostic-suggestion">Analyzing vehicle systems... 2 issues detected.</p>
+          <div class="agent-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%"></div>
+            </div>
+            <span class="progress-text">85% Complete</span>
+          </div>
+          <div class="agent-actions">
+            <button class="action-btn primary" onclick="runDiagnostic(event)">
+              <i class="fas fa-cogs"></i> Full Scan
+            </button>
+            <button class="action-btn secondary" onclick="viewReport(event)">
+              <i class="fas fa-file-alt"></i> Report
+            </button>
+          </div>
+        </div>
+
+        <div class="agent-card maintenance" id="maintenance-agent" onclick="selectAgent('maintenance')">
+          <div class="agent-header">
+            <div class="agent-avatar">
+              <i class="fas fa-tools"></i>
+              <div class="pulse-ring"></div>
+            </div>
+            <div class="agent-info">
+              <h3>Maintenance AI</h3>
+              <span class="agent-status">Standby</span>
+            </div>
+          </div>
+          <p class="agent-suggestion">Next service due in 2,500 km. Brake pads need attention.</p>
+          <div class="agent-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 60%"></div>
+            </div>
+            <span class="progress-text">Service Planning</span>
+          </div>
+          <div class="agent-actions">
+            <button class="action-btn primary" onclick="scheduleService(event)">
+              <i class="fas fa-calendar-alt"></i> Schedule
+            </button>
+            <button class="action-btn secondary" onclick="viewMaintenance(event)">
+              <i class="fas fa-history"></i> History
+            </button>
+          </div>
+        </div>
+
+        <div class="agent-card emergency" id="emergency-agent" onclick="selectAgent('emergency')">
+          <div class="agent-header">
+            <div class="agent-avatar warning">
+              <i class="fas fa-exclamation-triangle"></i>
+              <div class="pulse-ring warning"></div>
+            </div>
+            <div class="agent-info">
+              <h3>Emergency AI</h3>
+              <span class="agent-status warning">Alert</span>
+            </div>
+          </div>
+          <p class="agent-suggestion">Battery voltage low. Recommend immediate attention.</p>
+          <div class="agent-progress">
+            <div class="progress-bar">
+              <div class="progress-fill warning" style="width: 30%"></div>
+            </div>
+            <span class="progress-text">Critical Level</span>
+          </div>
+          <div class="agent-actions">
+            <button class="action-btn danger" onclick="emergencyMode(event)">
+              <i class="fas fa-shield-alt"></i> Emergency
+            </button>
+            <button class="action-btn secondary" onclick="contactService(event)">
+              <i class="fas fa-phone"></i> Call Service
+            </button>
+          </div>
+        </div>
+
+        <!-- New Predictive AI Agent -->
+        <div class="agent-card predictive" id="predictive-agent" onclick="selectAgent('predictive')">
+          <div class="agent-header">
+            <div class="agent-avatar">
+              <i class="fas fa-brain"></i>
+              <div class="pulse-ring"></div>
+            </div>
+            <div class="agent-info">
+              <h3>Predictive AI</h3>
+              <span class="agent-status">Learning</span>
+            </div>
+          </div>
+          <p class="agent-suggestion">Analyzing driving patterns... Fuel efficiency can improve by 12%.</p>
+          <div class="agent-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%"></div>
+            </div>
+            <span class="progress-text">Pattern Analysis</span>
+          </div>
+          <div class="agent-actions">
+            <button class="action-btn primary" onclick="runPrediction(event)">
+              <i class="fas fa-chart-line"></i> Predict
+            </button>
+            <button class="action-btn secondary" onclick="viewInsights(event)">
+              <i class="fas fa-lightbulb"></i> Insights
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Analysis Feed -->
+    <section class="analysis-feed">
+      <div class="feed-header">
+        <h3><i class="fas fa-stream"></i> Live Analysis Feed</h3>
+        <button class="feed-toggle" onclick="toggleFeed()">
+          <i class="fas fa-pause" id="feed-icon"></i>
+        </button>
+      </div>
+      <div class="feed-content" id="analysis-feed">
+        <div class="feed-item">
+          <span class="timestamp">14:23:45</span>
+          <span class="message">Diagnostic AI: Brake pad wear detected - 25% remaining</span>
+        </div>
+        <div class="feed-item">
+          <span class="timestamp">14:23:12</span>
+          <span class="message">Maintenance AI: Service reminder scheduled</span>
+        </div>
+        <div class="feed-item">
+          <span class="timestamp">14:22:58</span>
+          <span class="message">Emergency AI: Battery voltage monitoring initiated</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for AI Agent Feedback -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">AI Agent Report</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="agent-avatar-large" id="modal-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="modal-details">
+          <p id="modal-message">Processing diagnostic results...</p>
+          <div class="recommendation-card hidden" id="recommendation-card">
+            <h4>Recommendations:</h4>
+            <ul id="recommendations-list"></ul>
+          </div>
+          <div class="urgency-indicator" id="urgency-indicator">
+            <span class="urgency-level" id="urgency-level">Normal</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="action-btn primary" id="modal-primary-btn" onclick="handlePrimaryAction()">
+          <i class="fas fa-check"></i> Acknowledge
+        </button>
+        <button class="action-btn secondary" onclick="closeModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Control Panel -->
+  <div class="demo-panel" id="demo-panel">
+    <h4><i class="fas fa-flask"></i> Demo Controls</h4>
+    <div class="demo-buttons">
+      <button class="demo-btn" onclick="simulateBatteryIssue()">
+        <i class="fas fa-battery-quarter"></i> Simulate Battery Issue
+      </button>
+      <button class="demo-btn" onclick="simulateEngineCheck()">
+        <i class="fas fa-cogs"></i> Run Engine Check
+      </button>
+      <button class="demo-btn" onclick="simulateServiceAlert()">
+        <i class="fas fa-calendar-alt"></i> Trigger Service Alert
+      </button>
+      <button class="demo-btn" onclick="generatePrediction()">
+        <i class="fas fa-brain"></i> Generate Prediction
+      </button>
+    </div>
+    <button class="demo-toggle" onclick="toggleDemoPanel()" title="Toggle Demo Panel" aria-label="Toggle Demo Panel">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 AutoCare360 - AI-Powered Vehicle Intelligence</p>
+      <div class="footer-stats">
+        <span>Real-time monitoring</span> • 
+        <span>AI-powered insights</span> • 
+        <span>Predictive maintenance</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
